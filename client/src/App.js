@@ -1,18 +1,19 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { Route } from "wouter";
+import Home from "./routes/home";
+import LoginPage from "./routes/login";
 
 function App() {
-  useEffect(() => {
-    const get = async () => {
-      const res = await fetch("/api");
-      const data = await res.json();
-
-      console.log(data);
-    };
-
-    get();
-  }, []);
-
-  return <div className="App"></div>;
+  return (
+    <div className="App">
+      <Route path="/">
+        <Home />
+      </Route>
+      <Route path="/login">
+        <LoginPage />
+      </Route>
+    </div>
+  );
 }
 
 export default App;
