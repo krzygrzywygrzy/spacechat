@@ -45,15 +45,21 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin-top: 0.5rem;
 }
 
 .auth-form .auth-bottom div {
   margin-right: 1rem;
 }
 
+.auth-form .auth-bottom div > a {
+  font-weight: 400;
+}
+
 .auth-form .auth-bottom .btn {
-  padding: 0.5rem 1.5rem;
+  padding: 0.75rem 1.5rem;
   border-radius: 30px;
+  font-weight: 500;
   cursor: pointer;
   color: white;
   background: #1D4ED8;

@@ -3,21 +3,23 @@ import "../css/auth.css";
 import AuthNav from "../components/authNav";
 import { Link } from "wouter";
 
-const LoginPage = () => {
+const SignupPage = () => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
+  const [phoneNumber, setPhone] = useState("");
 
   return (
     <div className="auth">
       <AuthNav />
       <div className="auth-form">
-        <div className="title">Communicate with people from all across the universe</div>
+        <div className="title">Sign up to start chatting with your friends</div>
         <input placeholder="login..." value={login} onChange={(e) => setLogin(e.target.id)} />
         <input type="password" placeholder="password..." value={password} onChange={(e) => setPassword(e.target.id)} />
+        <input placeholder="phone..." value={phoneNumber} onChange={(e) => setPhone(e.target.id)} />
         <div className="auth-bottom">
-          <div className="btn">Log in</div>{" "}
+          <div className="btn">Sign up</div>
           <div>
-            <Link to="/signup">no account?</Link>
+            <Link to="/login">log in</Link>
           </div>
         </div>
       </div>
@@ -25,4 +27,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default SignupPage;
