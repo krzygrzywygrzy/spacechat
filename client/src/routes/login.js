@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../css/auth.css";
+import AuthNav from "../components/authNav";
 
 const LoginPage = () => {
   const [login, setLogin] = useState("");
@@ -7,6 +8,7 @@ const LoginPage = () => {
 
   return (
     <div className="auth">
+      <AuthNav />
       <div className="auth-form">
         <div className="title">Communicate with people from all across the galaxy</div>
         <input placeholder="login..." value={login} onChange={(e) => setLogin(e.target.id)} />

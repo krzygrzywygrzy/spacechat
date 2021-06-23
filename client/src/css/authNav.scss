@@ -1,0 +1,24 @@
+@import "config";
+
+.auth-nav {
+  width: 90%;
+  margin: auto;
+  padding: 2rem 0;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  .logo {
+    margin-right: 2rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .auth-nav {
+    width: calc(100% - 400px);
+    margin-left: 200px;
+    margin-right: 200px;
+  }
+}
+

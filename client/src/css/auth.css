@@ -66,10 +66,10 @@
 }
 
 @media (min-width: 1200px) {
-  .auth {
+  .auth-form {
     width: 300px;
     margin-left: 200px;
-    margin-top: 15rem;
+    margin-top: 10rem;
   }
 }
 /*# sourceMappingURL=auth.css.map */
