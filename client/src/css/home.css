@@ -2,6 +2,22 @@
   float: left;
   background: #ededed;
   height: 100vh;
+  padding: 0.5rem 1rem;
+}
+
+.home .chat-list .search-bar {
+  margin: 1rem 0;
+}
+
+.home .chat-list .search-bar input {
+  padding: 0.5rem 1rem;
+  border: none;
+  width: calc(100% - 2rem);
+  border-radius: 5px;
+}
+
+.home .chat-list .search-bar input:focus {
+  outline: none;
 }
 
 .home .chat {
@@ -12,10 +28,26 @@
 
 .home .chat .chat-main {
   display: block;
+  width: 100vh;
+}
+
+.home .chat .chat-main-header {
+  padding: 0.5rem 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .home .chat .side-menu {
   background: #ededed;
+  height: 100vh;
+  padding: 0.5rem 1rem;
 }
 
 @media (min-width: 1200px) {

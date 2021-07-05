@@ -6,6 +6,23 @@
         float: left;
         background: $bg-gray-light;
         height: 100vh;
+        padding: 0.5rem 1rem;
+
+        .search-bar {
+            margin: 1rem 0;
+
+            input {
+
+                padding: 0.5rem 1rem;
+                border: none;
+                width: calc(100% - 2rem);
+                border-radius: 5px;
+            }
+
+            input:focus {
+                outline: none;
+            }
+        }
     }
 
     .chat {
@@ -14,13 +31,25 @@
 
         .chat-main {
             display: block;
+            width: 100vh;
+
+            &-header {
+                padding: 0.5rem 1rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
         }
 
         .side-menu {
-            background: $bg-gray-light;  
+            background: $bg-gray-light;
+            height: 100vh;
+            padding: 0.5rem 1rem;  
         }
     }
 }
+
+
 
 @media (min-width: 1200px) {
     .chat-list {

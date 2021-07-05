@@ -1,11 +1,16 @@
-import React, {useState, useRef, useEffect} from "react";
+import React, { useState, useRef, useEffect } from "react";
 import useScreenSize from "../core/useScreenSize";
 import "../css/home.css";
 
 const Home = () => {
   const [showSideMenu, setShowSideMenu] = useState(true);
+  const [phrase, setPhrase] = useState("");
+
+  // refs
   const sideMenuRef = useRef(); // ref pointing to side menu of chat
   const chatRef = useRef(); // ref pointing to chat
+
+  // screen size
   const screenWidth = useScreenSize();
 
   // set chat width
@@ -13,41 +18,61 @@ const Home = () => {
     //TODO: make this more responsive
 
     let menusWidth = 0;
-    
-    if(screenWidth > 600){
+
+    if (screenWidth > 600) {
       menusWidth = 320;
     }
 
     if (showSideMenu) menusWidth *= 2;
 
-    chatRef.current.style.width = `${screenWidth - menusWidth}px`
+    chatRef.current.style.width = `${screenWidth - menusWidth}px`;
   }, [screenWidth]);
 
-  // handle showing and hiding chat side menu, with 
+  // handle showing and hiding chat side menu, with
   const handleSideMenu = () => {
-    if (showSideMenu === true){
+    if (showSideMenu === true) {
       sideMenuRef.current.style.display = "none";
       sideMenuRef.current.style.width = "0px";
-    }
-    else {
+    } else {
       sideMenuRef.current.style.display = "block";
       sideMenuRef.current.style.width = "320px";
     }
 
     setShowSideMenu(!showSideMenu);
-  }
-  
+  };
 
-
-
-  return <div className="home">
-    <div className="chat-list">chat-list</div>
-    <div className="chat" >
-      <div ref={chatRef} className="chat-main">Main View <button onClick={handleSideMenu}>show menu</button></div>
-      <div ref={sideMenuRef} className="side-menu">Side Menu</div>
+  return (
+    <div className="home">
+      {/* Chat List  */}
+      <div className="chat-list">
+        <div>Name Surname</div>
+        <div className="search-bar">
+          <input
+            type="text"
+            placeholder="search..."
+            onChange={(e) => setPhrase(e.target.value)}
+            value={phrase}
+          />
+        </div>
+      </div>
+      {/* Chat */}
+      <div className="chat">
+        <div ref={chatRef} className="chat-main">
+          <div className="chat-main-header">
+            <div>Name Surname</div>
+            <div>
+              <button onClick={handleSideMenu}>show menu</button>
+            </div>
+          </div>
+        </div>
+        {/* Chat's side menu */}
+        <div ref={sideMenuRef} className="side-menu">
+          Side Menu
+        </div>
+      </div>
+      <div className="clear"></div>
     </div>
-    <div className="clear"></div>
-  </div>;
+  );
 };
 
 export default Home;
