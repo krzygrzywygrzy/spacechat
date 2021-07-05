@@ -1,1 +1,29 @@
-/* No CSS *//*# sourceMappingURL=home.css.map */
+.home .chat-list {
+  float: left;
+  background: #ededed;
+  height: 100vh;
+}
+
+.home .chat {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.home .chat .chat-main {
+  display: block;
+}
+
+.home .chat .side-menu {
+  background: #ededed;
+}
+
+@media (min-width: 1200px) {
+  .chat-list {
+    width: 320px;
+  }
+  .side-menu {
+    width: 320px;
+  }
+}
+/*# sourceMappingURL=home.css.map */

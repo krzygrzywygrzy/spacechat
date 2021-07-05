@@ -1,3 +1,33 @@
+@import "config";
+
 .home {
-    
+
+    .chat-list {
+        float: left;
+        background: $bg-gray-light;
+        height: 100vh;
+    }
+
+    .chat {
+        display: flex;
+
+
+        .chat-main {
+            display: block;
+        }
+
+        .side-menu {
+            background: $bg-gray-light;  
+        }
+    }
+}
+
+@media (min-width: 1200px) {
+    .chat-list {
+        width: 320px;
+    }
+
+    .side-menu {
+        width: 320px;
+    }
 }
