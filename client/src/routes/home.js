@@ -9,6 +9,7 @@ const Home = () => {
   // refs
   const sideMenuRef = useRef(); // ref pointing to side menu of chat
   const chatRef = useRef(); // ref pointing to chat
+  const bottomInputRef = useRef();
 
   // screen size
   const screenWidth = useScreenSize();
@@ -24,9 +25,13 @@ const Home = () => {
     }
 
     if (showSideMenu) menusWidth *= 2;
+    
+    const finalWidth = screenWidth - menusWidth;
 
-    chatRef.current.style.width = `${screenWidth - menusWidth}px`;
-  }, [screenWidth]);
+    chatRef.current.style.width = `${finalWidth}px`;
+    bottomInputRef.current.style.width = `${finalWidth - 80}px`;;
+    
+  }, [screenWidth, showSideMenu]);
 
   // handle showing and hiding chat side menu, with
   const handleSideMenu = () => {
@@ -64,6 +69,10 @@ const Home = () => {
               <button onClick={handleSideMenu}>show menu</button>
             </div>
           </div>
+          <div className="chat-main-display">
+            <div>123</div>
+          </div>
+          <div ref={bottomInputRef} className="text-input">input</div>
         </div>
         {/* Chat's side menu */}
         <div ref={sideMenuRef} className="side-menu">

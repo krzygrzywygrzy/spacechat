@@ -5,7 +5,7 @@
     .chat-list {
         float: left;
         background: $bg-gray-light;
-        height: 100vh;
+        height: calc(100vh - 1rem);
         padding: 0.5rem 1rem;
 
         .search-bar {
@@ -39,11 +39,24 @@
                 justify-content: space-between;
                 align-items: center;
             }
+
+            .chat-main-display {
+                display: flex;
+                align-items: stretch;
+                height: calc(100% - 4.5rem);
+            }
+
+            .text-input {
+                position: absolute;
+                bottom: 0;
+                padding: 0.5rem 1rem;
+            }
+
         }
 
         .side-menu {
             background: $bg-gray-light;
-            height: 100vh;
+            height: calc(100vh - 1rem);
             padding: 0.5rem 1rem;  
         }
     }
