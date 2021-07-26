@@ -1,0 +1,3 @@
+#Issues:
+    - searchController wyszukuje loginy jesli tylko zawierają w sobie frazę, która została podana.
+    Należy zmienić aby szukało zaczynające się na tę frazę.

@@ -38,7 +38,7 @@ const handleErrorsSignup = (err) => {
     // duplicate value errors
     if (err.code === 11000) {
         if (err.message.includes('login_1 dup')) {
-            errors.email = 'That login is already registered';
+            errors.login = 'That login is already registered';
             return errors;
         }
     }
