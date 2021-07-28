@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import UserCard from "../components/userCard";
 import "../css/home.css";
 
 const Home = () => {
@@ -12,6 +13,9 @@ const Home = () => {
         <div className="list-header">Name Surname</div>
         <div className="search-bar">
           <input type="text" placeholder="search..." onChange={(e) => setPhrase(e.target.value)} value={phrase} />
+        </div>
+        <div className="chat-list-main">
+          <UserCard />
         </div>
       </div>
       {/* Chat */}

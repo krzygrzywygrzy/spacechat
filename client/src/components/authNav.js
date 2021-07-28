@@ -1,5 +1,5 @@
 import React from "react";
-import "../css/authNav.css";
+import "../css/components/authNav.css";
 import { Link } from "wouter";
 
 const AuthNav = () => {

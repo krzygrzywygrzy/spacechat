@@ -12,7 +12,7 @@ const SignupPage = () => {
     <div className="auth">
       <AuthNav />
       <div className="auth-form">
-        <div className="title">Sign up to start chatting with your friends</div>
+        <div className="title unselectable">Sign up to start chatting with your friends</div>
         <input placeholder="login..." value={login} onChange={(e) => setLogin(e.target.id)} />
         <input type="password" placeholder="password..." value={password} onChange={(e) => setPassword(e.target.id)} />
         <input placeholder="phone..." value={phoneNumber} onChange={(e) => setPhone(e.target.id)} />
