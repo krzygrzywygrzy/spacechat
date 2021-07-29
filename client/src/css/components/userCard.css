@@ -6,6 +6,7 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  cursor: pointer;
 }
 
 .user-card .image {
@@ -32,5 +33,9 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+.selected-card {
+  background: #ededed;
 }
 /*# sourceMappingURL=userCard.css.map */

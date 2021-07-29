@@ -3,6 +3,7 @@
 .user-card {
   display: flex;
   flex-direction: row;
+  cursor: pointer;
 
   .image {
     margin: 0.25rem;
@@ -20,4 +21,8 @@
     align-items: flex-start;
     justify-content: center;
   }
+}
+
+.selected-card {
+  background: $bg-gray-light;
 }
