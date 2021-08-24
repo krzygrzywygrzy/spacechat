@@ -11,7 +11,8 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: [true, 'Please enter a password']
-    }
+    },
+    allChats: Array
 });
 
 userSchema.pre('save', async function(next) {
