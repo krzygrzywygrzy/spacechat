@@ -1,3 +1,10 @@
 #Issues:
     - searchController wyszukuje loginy jesli tylko zawierają w sobie frazę, która została podana.
     Należy zmienić aby szukało zaczynające się na tę frazę.
+
+
+#Things-To-Implement:
+    - wyświetlanie wszystkich osób alfabetycznie jeśli nie zostanie nic wpisane \/  ?! Później do usunięcia - będzie powodować problemy !?
+    - możliwość zmiany na stronie ilości wyświetlanych rekordów (podział na strony - doczytywanie zawartości)
+    - implement friendsController
+    - expand chatController
