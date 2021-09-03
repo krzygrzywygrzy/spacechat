@@ -12,7 +12,14 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please enter a password']
     },
-    allChats: Array
+    allChats: Array,
+    friends: [
+        {
+            _id: String,
+            pseudo: String,
+            addDate: Date
+        }
+    ]
 });
 
 userSchema.pre('save', async function(next) {
