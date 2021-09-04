@@ -2,9 +2,10 @@ const User = require('../models/User');
 const Chat = require('../models/Chat');
 const { idFromCookie } = require('../middleware/components');
 
-const first_chat = async (friendID, message) => {
+const first_chat = async (req, res) => {
     // idFromCookie();
-    const userID = '222';
+    const { friendID, message } = req.body;
+    const userID = '60fe7b0155e92148caa3d06c';
     const sentDate = new Date().toUTCString();
     try {
         const chat = await Chat.create({
@@ -45,9 +46,41 @@ const first_chat = async (friendID, message) => {
         console.log(err);
         res.status(400).json({ error: 'Something goes wrong, please try again!'});
     }
-
 };
 
+const all_chats_get = async (req, res) => {
+    // idFromCookie();
+    const userID = '60fe7b0155e92148caa3d06c';
+
+    try {
+        const user = await Chat.find({ members: userID }).lean();
+
+        console.log(user);
+        res.status(200).json(user);
+    } catch (err) {
+        console.log(err);
+        res.status(400).json({ error: err });
+    }
+};
+
+const specific_chat_get = async (req, res) => {
+    // idFromCookie();
+    const { friendID } = req.body;
+    const userID = '60fe7b0155e92148caa3d06c';
+
+    try {
+        const user = await Chat.findOne({ members: userID && friendID }).lean();
+
+        console.log(user);
+        res.status(200).json(user);
+    } catch (err) {
+        console.log(err);
+        res.status(400).json(err);
+    }
+}
+
 module.exports = {
-    first_chat
+    first_chat,
+    all_chats_get,
+    specific_chat_get
 }

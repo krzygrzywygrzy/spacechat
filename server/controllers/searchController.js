@@ -4,7 +4,7 @@ const user_search = async (req, res) => {
     const { phrase } = req.body;
     // const phrase = req.query.phrase;
     const reg = new RegExp(phrase, 'i');
-    
+
     if (phrase == "") {
         try {
             const user = await User.find({ login: { $regex: reg }}).lean();

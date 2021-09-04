@@ -6,5 +6,6 @@
 #Things-To-Implement:
     - wyświetlanie wszystkich osób alfabetycznie jeśli nie zostanie nic wpisane \/  ?! Później do usunięcia - będzie powodować problemy !?
     - możliwość zmiany na stronie ilości wyświetlanych rekordów (podział na strony - doczytywanie zawartości)
-    - implement friendsController
+    - implement friendsController \/
     - expand chatController
+    - dodac opcje odczytane ( może trzeba to rozbudować ale jeszcze nie)
