@@ -23,5 +23,6 @@ router.post('/api/friendlistGet', friendsController.friendlist_get);
 router.post('/api/firstChat', chatController.first_chat);
 router.post('/api/allChats', chatController.all_chats_get);
 router.post('/api/specificChat', chatController.specific_chat_get);
+router.post('/api/regularMessage', chatController.insert_message);
 
 module.exports = router;
