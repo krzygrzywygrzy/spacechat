@@ -81,10 +81,10 @@ const specific_chat_get = async (req, res) => {
     }
 };
 
-const insert_message = async (req, res) => {
+const regular_message = async (req, res) => {
     // idFromCookie();
     const userID = '60fe7b0155e92148caa3d06c';
-    const { friendID, message, chatID } = req.body;
+    const { friendID, message } = req.body;
     const sentDate = new Date().toUTCString();
 
     const chatObj = {
@@ -96,22 +96,32 @@ const insert_message = async (req, res) => {
     };
 
     try {
-        const chat = await Chat.findByIdAndUpdate(chatID, { $push: { room: chatObj }}, { useFindAndModify: false }, function(err, result) {
+        const chat = await Chat.findOneAndUpdate({ members: userID && friendID }, { $addToSet: { room: chatObj }}, { useFindAndModify: false }, function(err, result) {
             if (err) {
-                console.log(chatID);
+                // console.log(chatID);
                 console.log('Failed insertion to room section');
                 console.log(err);
             } else {
-                console.log(chatID);
+                // console.log(chat._id);
                 console.log('Completed insertion to room section');
             }
         });
+        // console.log(chat.room[chat.room.length - 1]._id);
+        // const unreadChatObj = {
+        //     receiver: friendID,
+        //     message: 
+        // }
+
+        // const unreadChat = await Chat.findOneAndUpdate({ members: userID && friendID }, { $addToSet: { unreadMessages: { }}})
+        
         res.status(200).json(chat);
     } catch (err) {
         console.log(err);
         res.status(400).json({ error: 'Something goes wrong, please try again!'});
     }
 };
+
+
 
 // const chat_read = async (req, res) => {
 //     // idFromCookie();
@@ -122,5 +132,5 @@ module.exports = {
     first_chat,
     all_chats_get,
     specific_chat_get,
-    insert_message
+    regular_message
 }

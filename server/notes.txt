@@ -9,7 +9,7 @@
     - implement friendsController \/
     - expand chatController
     - dodac opcje odczytane ( może trzeba to rozbudować ale jeszcze nie)
-    - dodać insertowanie kolejnych wiadomości do juz utworzonego czatu
+    - dodać insertowanie kolejnych wiadomości do juz utworzonego czatu \/
 
     waifu's _id = 60fe7ae355e92148caa3d066
     awada's _id = 60fe7b0155e92148caa3d06c

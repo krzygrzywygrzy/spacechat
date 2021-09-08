@@ -14,6 +14,12 @@ const chatSchema = new mongoose.Schema({
             sentDate: String,
             readDate: String
         }
+    ],
+    unreadMessages: [
+        {
+            receiver: String,
+            messages: Array
+        }
     ]
 });
 
