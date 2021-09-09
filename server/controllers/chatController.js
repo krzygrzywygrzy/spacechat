@@ -16,10 +16,29 @@ const first_chat = async (req, res) => {
                 readStatus: false,
                 sentDate: sentDate,
                 readDate: ''
-            }]
+            }],
+            unreadMessages: [
+                {
+                    receiver: friendID
+                },
+                {
+                    receiver: userID
+                }
+            ]
         });
 
         const chatID = chat._id.toString();
+
+        const messageID = chat.room[chat.room.length - 1]._id;
+
+        const unreadMess = await Chat.findOneAndUpdate({ members: userID && friendID, unreadMessages: { receiver: friendID }}, { $addToSet: { unreadMessages: { messages: messageID }}}, { useFindAndModify: false }, function (err, result) {
+            if (err) {
+                console.log('Failed insertion to unreadMessages section');
+                console.log(err);
+            } else {
+                console.log('Completed insertion to unreadMessages section');
+            }
+        });
 
         const user = await User.findOneAndUpdate({ _id: userID}, { $addToSet: { allChats: { chatID: chatID, friendID: friendID }}}, { useFindAndModify: false }, function(err, result) {
             if (err) {
@@ -107,13 +126,18 @@ const regular_message = async (req, res) => {
             }
         });
         // console.log(chat.room[chat.room.length - 1]._id);
-        // const unreadChatObj = {
-        //     receiver: friendID,
-        //     message: 
-        // }
 
-        // const unreadChat = await Chat.findOneAndUpdate({ members: userID && friendID }, { $addToSet: { unreadMessages: { }}})
-        
+        const messageID = chat.room[chat.room.length - 1]._id;
+
+        const unreadMess = await Chat.findOneAndUpdate({ members: userID && friendID, unreadMessages: { receiver: friendID }}, { $addToSet: { unreadMessages: { messages: messageID }}}, { useFindAndModify: false }, function (err, result) {
+            if (err) {
+                console.log('Failed insertion to unreadMessages section');
+                console.log(err);
+            } else {
+                console.log('Completed insertion to unreadMessages section');
+            }
+        });
+
         res.status(200).json(chat);
     } catch (err) {
         console.log(err);
