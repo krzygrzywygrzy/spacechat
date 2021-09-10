@@ -1,4 +1,7 @@
-require('dotenv').config();
+// const path = require('path');
+// require('dotenv').config({ path: path.resolve(__dirname + './.env')});
+const yenv = require('yenv');
+const env = yenv('env.yaml', { env: 'development' });
 const express = require("express");
 const mongoose = require('mongoose');
 const routes = require('./routes/routes');
@@ -9,13 +12,15 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// const PORT = process.env.PORT || 3001;
 const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
 
-const dbURI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@nodetuts.je9tx.mongodb.net/spacechat?retryWrites=true&w=majority`
+// const dbURI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@nodetuts.je9tx.mongodb.net/spacechat?retryWrites=true&w=majority`
+const dbURI = `mongodb+srv://${env.DB_USER}:${env.DB_PASS}@nodetuts.je9tx.mongodb.net/spacechat?retryWrites=true&w=majority`
 mongoose.connect(dbURI, {  useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
     .then(() => {
       console.log("DB state: on");
