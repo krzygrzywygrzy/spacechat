@@ -142,14 +142,32 @@ const regular_message = async (req, res) => {
 
         const messageID = chat.room[chat.room.length - 1]._id;
 
-        const unreadMess = await Chat.findOneAndUpdate({ members: userID && friendID }, { $addToSet: { unreadMessages: { receiver: friendID, messages: messageID }}}, { useFindAndModify: false }, function (err, result) {
+        const unreadMess = await Chat.findOneAndUpdate({ members: userID && friendID }, { $pull: { unreadMessages: { receiver: friendID}}}, { useFindAndModify: false }, function (err, result) {
             if (err) {
-                console.log('Failed insertion to unreadMessages section');
+                console.log('Failed pull from unreadMessages section');
+                console.log(err);
+            } else {
+                console.log('Completed pull from unreadMessages section');
+            }
+        });
+        // const unreadMessSection = await Chat.findOne({ members: userID && friendID }).select('unreadMessages').lean();
+        // console.log(unreadMessSection);
+        // console.log(unreadMessSection.unreadMessages)
+        console.log(unreadMess);
+        const unreadMessArr = [];
+        unreadMessArr.push(unreadMess.messages);
+        console.log(unreadMessArr);
+        unreadMessArr.push(messageID);
+        console.log(unreadMessArr);
+
+        const unreadMessReturn = await Chat.findOneAndUpdate({ members: userID && friendID }, { $addToSet: { unreadMessages: { receiver: friendID, messages: unreadMessArr }}}, { useFindAndModify: false }, function (err, result) {
+            if (err) {
+                console.log('Failed isertion to unreadMessages section');
                 console.log(err);
             } else {
                 console.log('Completed insertion to unreadMessages section');
             }
-        });
+        })
 
         res.status(200).json(chat);
     } catch (err) {
