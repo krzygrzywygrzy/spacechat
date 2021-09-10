@@ -16,4 +16,38 @@
 #Done:
     - implement friendsController \/
     - dodać insertowanie kolejnych wiadomości do juz utworzonego czatu \/
-    -
+    
+
+    unreadMessages
+:
+Array
+0
+:
+Object
+messages
+:
+Array
+_id
+:
+613b0f9fa7c1cf27ca479f3d
+receiver
+:
+"613b0cbb08096626905def43"
+1
+:
+Object
+messages
+:
+Array
+0
+:
+"613b1e697a479b31cb2ea9db"
+_id
+:
+613b0f9fa7c1cf27ca479f3d
+receiver
+:
+"613b0cd008096626905def45"
+__v
+:
+0
