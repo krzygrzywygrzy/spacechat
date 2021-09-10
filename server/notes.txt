@@ -16,4 +16,4 @@
 #Done:
     - implement friendsController \/
     - dodać insertowanie kolejnych wiadomości do juz utworzonego czatu \/
-    - 
+    -
