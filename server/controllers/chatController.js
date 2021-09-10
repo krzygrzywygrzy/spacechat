@@ -4,8 +4,9 @@ const { idFromCookie } = require('../middleware/components');
 
 const first_chat = async (req, res) => {
     // idFromCookie();
-    const { friendID, message } = req.body;
-    const userID = '60fe7b0155e92148caa3d06c';
+    const { userID, friendID, message } = req.body;
+    // const userID = '60fe7b0155e92148caa3d06c';
+    // const userID = '60d4716dfb64a6482c128537';
     const sentDate = new Date().toUTCString();
     try {
         const chat = await Chat.create({
@@ -26,12 +27,21 @@ const first_chat = async (req, res) => {
                 }
             ]
         });
-
+ 
         const chatID = chat._id.toString();
 
         const messageID = chat.room[chat.room.length - 1]._id;
 
-        const unreadMess = await Chat.findOneAndUpdate({ members: userID && friendID, unreadMessages: { receiver: friendID }}, { $addToSet: { unreadMessages: { messages: messageID }}}, { useFindAndModify: false }, function (err, result) {
+        // const unreadMess = await Chat.findOneAndUpdate({ members: userID && friendID, unreadMessages: { receiver: friendID }}, { $addToSet: { unreadMessages: { messages: messageID }}}, { useFindAndModify: false }, function (err, result) {
+        //     if (err) {
+        //         console.log('Failed insertion to unreadMessages section');
+        //         console.log(err);
+        //     } else {
+        //         console.log('Completed insertion to unreadMessages section');
+        //     }
+        // });
+
+        const unreadMess = await Chat.findOneAndUpdate({ members: userID && friendID}, { $addToSet: { unreadMessages: { receiver: friendID, messages: messageID }}}, { useFindAndModify: false }, function (err, result) {
             if (err) {
                 console.log('Failed insertion to unreadMessages section');
                 console.log(err);
@@ -102,7 +112,10 @@ const specific_chat_get = async (req, res) => {
 
 const regular_message = async (req, res) => {
     // idFromCookie();
-    const userID = '60fe7b0155e92148caa3d06c';
+    // const userID = '60fe7b0155e92148caa3d06c';
+    // const userID = '60d4716dfb64a6482c128537';
+    const userID = '613b0cbb08096626905def43'; // user1
+    // user2 613b0cd008096626905def45
     const { friendID, message } = req.body;
     const sentDate = new Date().toUTCString();
 
@@ -129,7 +142,7 @@ const regular_message = async (req, res) => {
 
         const messageID = chat.room[chat.room.length - 1]._id;
 
-        const unreadMess = await Chat.findOneAndUpdate({ members: userID && friendID, unreadMessages: { receiver: friendID }}, { $addToSet: { unreadMessages: { messages: messageID }}}, { useFindAndModify: false }, function (err, result) {
+        const unreadMess = await Chat.findOneAndUpdate({ members: userID && friendID }, { $addToSet: { unreadMessages: { receiver: friendID, messages: messageID }}}, { useFindAndModify: false }, function (err, result) {
             if (err) {
                 console.log('Failed insertion to unreadMessages section');
                 console.log(err);
