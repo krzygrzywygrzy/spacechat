@@ -14,13 +14,13 @@ const chatSchema = new mongoose.Schema({
             sentDate: String,
             readDate: String
         }
-    ],
-    unreadMessages: [
-        {
-            receiver: String,
-            messages: Array
-        }
     ]
+    // unreadMessages: [
+    //     {
+    //         receiver: String,
+    //         messages: Array
+    //     }
+    // ]
 });
 
 const Chat = mongoose.model('chat', chatSchema);

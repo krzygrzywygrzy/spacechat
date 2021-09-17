@@ -17,15 +17,15 @@ const first_chat = async (req, res) => {
                 readStatus: false,
                 sentDate: sentDate,
                 readDate: ''
-            }],
-            unreadMessages: [
-                {
-                    receiver: friendID
-                },
-                {
-                    receiver: userID
-                }
-            ]
+            }]
+            // unreadMessages: [
+            //     {
+            //         receiver: friendID
+            //     },
+            //     {
+            //         receiver: userID
+            //     }
+            // ]
         });
  
         const chatID = chat._id.toString();
@@ -41,16 +41,17 @@ const first_chat = async (req, res) => {
         //     }
         // });
 
-        const unreadMess = await Chat.findOneAndUpdate({ members: userID && friendID}, { $addToSet: { unreadMessages: { receiver: friendID, messages: messageID }}}, { useFindAndModify: false }, function (err, result) {
-            if (err) {
-                console.log('Failed insertion to unreadMessages section');
-                console.log(err);
-            } else {
-                console.log('Completed insertion to unreadMessages section');
-            }
-        });
+        /// To poniżej działało
+        // const unreadMess = await Chat.findOneAndUpdate({ members: userID && friendID}, { $addToSet: { unreadMessages: { receiver: friendID, messages: messageID }}}, { useFindAndModify: false }, function (err, result) {
+        //     if (err) {
+        //         console.log('Failed insertion to unreadMessages section');
+        //         console.log(err);
+        //     } else {
+        //         console.log('Completed insertion to unreadMessages section');
+        //     }
+        // });
 
-        const user = await User.findOneAndUpdate({ _id: userID}, { $addToSet: { allChats: { chatID: chatID, friendID: friendID }}}, { useFindAndModify: false }, function(err, result) {
+        const user = await User.findOneAndUpdate({ _id: userID}, { $addToSet: { allChats: { chatID: chatID, friendID: friendID, messages: [] }}}, { useFindAndModify: false }, function(err, result) {
             if (err) {
                 console.log(chatID);
                 console.log('Failed adding to allChats section');
@@ -61,7 +62,7 @@ const first_chat = async (req, res) => {
             }
         });
 
-        const friend = await User.findOneAndUpdate({ _id: friendID }, { $addToSet: { allChats: { chatID: chatID, friendID: userID }}}, {useFindAndModify: false}, function(err, result) {
+        const friend = await User.findOneAndUpdate({ _id: friendID }, { $addToSet: { allChats: { chatID: chatID, friendID: userID, messages: [messageID] }}}, {useFindAndModify: false}, function(err, result) {
             if (err) {
                 console.log(chatID);
                 console.log('Failed adding to allChats section');
@@ -128,7 +129,8 @@ const regular_message = async (req, res) => {
     };
 
     try {
-        const chat = await Chat.findOneAndUpdate({ members: userID && friendID }, { $addToSet: { room: chatObj }}, { useFindAndModify: false }, function(err, result) {
+        const chat = await Chat.findOneAndUpdate({ members: userID && friendID }, { $addToSet: { room: chatObj }},
+            { useFindAndModify: false }, function(err, result) {
             if (err) {
                 // console.log(chatID);
                 console.log('Failed insertion to room section');
@@ -139,35 +141,10 @@ const regular_message = async (req, res) => {
             }
         });
         // console.log(chat.room[chat.room.length - 1]._id);
-
+        console.log(chat);
         const messageID = chat.room[chat.room.length - 1]._id;
 
-        const unreadMess = await Chat.findOneAndUpdate({ members: userID && friendID }, { $pull: { unreadMessages: { receiver: friendID}}}, { useFindAndModify: false }, function (err, result) {
-            if (err) {
-                console.log('Failed pull from unreadMessages section');
-                console.log(err);
-            } else {
-                console.log('Completed pull from unreadMessages section');
-            }
-        });
-        // const unreadMessSection = await Chat.findOne({ members: userID && friendID }).select('unreadMessages').lean();
-        // console.log(unreadMessSection);
-        // console.log(unreadMessSection.unreadMessages)
-        console.log(unreadMess);
-        const unreadMessArr = [];
-        unreadMessArr.push(unreadMess.messages);
-        console.log(unreadMessArr);
-        unreadMessArr.push(messageID);
-        console.log(unreadMessArr);
-
-        const unreadMessReturn = await Chat.findOneAndUpdate({ members: userID && friendID }, { $addToSet: { unreadMessages: { receiver: friendID, messages: unreadMessArr }}}, { useFindAndModify: false }, function (err, result) {
-            if (err) {
-                console.log('Failed isertion to unreadMessages section');
-                console.log(err);
-            } else {
-                console.log('Completed insertion to unreadMessages section');
-            }
-        })
+        
 
         res.status(200).json(chat);
     } catch (err) {
